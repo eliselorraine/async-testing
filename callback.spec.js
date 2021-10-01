@@ -3,6 +3,7 @@ const assert = require('assert');
 describe('async testing', () => {
 
     let answer = false;
+    
     function trueAnswer(answer, callback) {
         setTimeout(() => {
             answer = true;
@@ -45,7 +46,14 @@ describe('async testing', () => {
     describe('how to check promises', () => {
         it('promises to change answer to true', () => {
             return myPromise
-                .then(() => assert.equal(answer, true))
+            .then(() => assert.equal(answer, true));
+        })
+    })
+
+    describe('testing my promise with async await', () => {
+        it('still promises to change the answer to true', async () => {
+            const result = await myPromise;
+            assert.equal(result, true);
         })
     })
 
@@ -54,9 +62,20 @@ describe('async testing', () => {
     }
 
     describe('how to check with async await', () => {
-        it('async awaits changes our answer to true', async () => {
+        it('async await changes our answer to true', async () => {
             const result = await getFoo();
             assert.equal(result, 'foo');
+        })
+    })
+
+    const anotherAsync = async (a, b) => {
+        return answer = a + b;
+    }
+
+    describe('anotherAsync function', () => {
+        it('should add two numbers', async () => {
+            const result = await anotherAsync(4, 8);
+            assert.equal(result, 12);
         })
     })
 })
