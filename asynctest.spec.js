@@ -3,7 +3,7 @@ const assert = require('assert');
 describe('async testing', () => {
 
     let answer = false;
-    
+
     function trueAnswer(answer, callback) {
         setTimeout(() => {
             answer = true;
@@ -32,6 +32,7 @@ describe('async testing', () => {
             addAsync(10, 5, result => {
                 assert.equal(result, 15);
                 done();
+                
             })
         })
     })
@@ -45,8 +46,8 @@ describe('async testing', () => {
 
     describe('how to check promises', () => {
         it('promises to change answer to true', () => {
-            return myPromise
-            .then(() => assert.equal(answer, true));
+             return myPromise
+                .then(() => assert.equal(answer, true));
         })
     })
 
